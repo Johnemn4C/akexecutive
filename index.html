@@ -1,589 +1,550 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="AK EXECUTIVE - Firma de formación y consultoría ejecutiva especializada en desarrollo de líderes y equipos de alto rendimiento">
-    <meta name="keywords" content="formación ejecutiva, consultoría empresarial, liderazgo, desarrollo directivo, capacitación empresarial">
-    <title>AK EXECUTIVE | Formación y Consultoría Ejecutiva</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AK Executive | Formación y Consultoría Ejecutiva</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet"/>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --navy:#0D2B57;--navy-dark:#081b38;
+      --gold:#C5A46D;--gold-light:#d4b88a;
+      --dark:#2B2B2B;--gray:#E6E6E6;
+      --white:#fff;--off:#F8F7F5;
+    }
+    html{scroll-behavior:smooth}
+    body{font-family:'Montserrat',sans-serif;background:var(--off);color:var(--dark);overflow-x:hidden}
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
-        }
+    /* ── NAV ── */
+    nav{
+      position:fixed;top:0;left:0;right:0;z-index:100;
+      display:flex;align-items:center;justify-content:space-between;
+      padding:1rem 4rem;
+      background:rgba(8,27,56,0.97);
+      backdrop-filter:blur(14px);
+      border-bottom:1px solid rgba(197,164,109,0.2);
+      transition:padding 0.3s;
+    }
+    .logo-wrap{display:flex;align-items:center;gap:0.7rem;text-decoration:none}
+    .logo-wrap .divider{width:1px;height:26px;background:var(--gold);opacity:0.7}
+    .logo-wrap .exec-text{
+      font-family:'Montserrat',sans-serif;font-weight:500;
+      font-size:0.78rem;letter-spacing:0.32em;text-transform:uppercase;color:#fff;
+    }
+    nav ul{list-style:none;display:flex;gap:2rem}
+    nav ul a{color:rgba(255,255,255,0.7);text-decoration:none;font-size:0.7rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;transition:color 0.2s}
+    nav ul a:hover{color:var(--gold)}
+    .nav-cta{background:var(--gold)!important;color:var(--navy-dark)!important;padding:0.45rem 1.2rem!important;border-radius:2px;font-weight:700!important}
+    .nav-cta:hover{background:var(--gold-light)!important}
 
-        /* Header */
-        header {
-            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-            color: white;
-            padding: 1rem 0;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
+    /* ── HERO ── */
+    #hero{
+      min-height:100vh;background:var(--navy-dark);
+      display:flex;flex-direction:column;justify-content:center;
+      padding:8rem 4rem 6rem;position:relative;overflow:hidden;
+    }
+    #hero::before{
+      content:'';position:absolute;inset:0;pointer-events:none;
+      background-image:
+        linear-gradient(rgba(197,164,109,0.04) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(197,164,109,0.04) 1px,transparent 1px);
+      background-size:60px 60px;
+    }
+    .hero-diagonal{
+      position:absolute;top:0;right:0;bottom:0;width:42%;
+      background:linear-gradient(135deg,transparent,rgba(13,43,87,0.4));
+      clip-path:polygon(15% 0,100% 0,100% 100%,0% 100%);
+      border-left:1px solid rgba(197,164,109,0.1);
+      pointer-events:none;
+    }
+    /* ── HERO LOGO (grande) ── */
+    .hero-brand{display:flex;align-items:center;gap:1.2rem;margin-bottom:2.5rem}
+    .hero-brand .h-divider{width:2px;height:56px;background:var(--gold);opacity:0.85;flex-shrink:0}
+    .hero-brand .h-exec{
+      font-family:'Montserrat',sans-serif;font-weight:500;
+      font-size:1.5rem;letter-spacing:0.28em;text-transform:uppercase;color:#fff;
+    }
+    /* ── HERO TEXT ── */
+    .hero-tag{
+      font-size:0.63rem;font-weight:700;letter-spacing:0.3em;
+      color:var(--gold);text-transform:uppercase;margin-bottom:1.2rem;
+      display:flex;align-items:center;gap:0.6rem;
+    }
+    .hero-tag::before{content:'';display:block;width:28px;height:1px;background:var(--gold)}
+    .hero h1{
+      font-size:clamp(3rem,6.5vw,6.5rem);
+      font-weight:900;
+      color:#ffffff;
+      line-height:1.05;
+      letter-spacing:-0.025em;
+      max-width:700px;
+      margin-bottom:1.5rem;
+    }
+    .hero h1 .gold{color:var(--gold)}
+    .hero-sub{
+      font-family:'Cormorant Garamond',serif;font-size:clamp(1rem,1.8vw,1.3rem);
+      font-style:italic;color:rgba(255,255,255,0.65);
+      max-width:500px;line-height:1.7;margin-bottom:2rem;
+    }
+    .hero-pills{display:flex;gap:0.5rem;flex-wrap:wrap;margin-bottom:2.5rem}
+    .hero-pill{font-size:0.6rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:rgba(255,255,255,0.55);border:1px solid rgba(255,255,255,0.12);padding:0.38rem 0.85rem;border-radius:2px}
+    .hero-actions{display:flex;gap:1rem;flex-wrap:wrap}
+    .btn-primary{background:var(--gold);color:var(--navy-dark);padding:0.85rem 2rem;font-size:0.73rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;text-decoration:none;border-radius:2px;transition:background 0.2s,transform 0.2s;display:inline-block}
+    .btn-primary:hover{background:var(--gold-light);transform:translateY(-2px)}
+    .btn-outline{border:1px solid rgba(255,255,255,0.25);color:rgba(255,255,255,0.85);padding:0.85rem 2rem;font-size:0.73rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;border-radius:2px;transition:border-color 0.2s,color 0.2s;display:inline-block}
+    .btn-outline:hover{border-color:var(--gold);color:var(--gold)}
+    .hero-stats{display:flex;gap:3rem;margin-top:4rem;padding-top:2.5rem;border-top:1px solid rgba(197,164,109,0.15)}
+    .h-stat .num{font-size:2rem;font-weight:900;color:#fff;line-height:1}
+    .h-stat .num span{color:var(--gold)}
+    .h-stat .lbl{font-size:0.58rem;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-top:0.2rem}
 
-        nav {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 2rem;
-        }
+    /* ── MARQUEE ── */
+    .marquee-strip{background:var(--gold);overflow:hidden;padding:0.8rem 0;white-space:nowrap}
+    .marquee-inner{display:inline-flex;gap:2rem;animation:marquee 22s linear infinite}
+    .m-item{font-size:0.67rem;font-weight:800;letter-spacing:0.25em;text-transform:uppercase;color:var(--navy-dark);flex-shrink:0}
+    .m-dot{color:var(--navy-dark);opacity:0.35}
 
-        .logo {
-            font-size: 1.8rem;
-            font-weight: bold;
-            letter-spacing: 2px;
-        }
+    /* ── SECTION COMMONS ── */
+    .sec-label{font-size:0.6rem;font-weight:700;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);margin-bottom:1.2rem;display:flex;align-items:center;gap:0.55rem}
+    .sec-label::before{content:'';display:block;width:20px;height:1px;background:var(--gold)}
+    .sec-label.dark-line::before{background:var(--navy)}
+    .sec-label.dark-line{color:var(--navy)}
 
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
+    /* ── ABOUT ── */
+    #acerca{display:grid;grid-template-columns:1fr 1fr;min-height:70vh}
+    .about-vis{
+      background:var(--navy);position:relative;overflow:hidden;
+      display:flex;flex-direction:column;justify-content:flex-end;padding:4rem;
+    }
+    .about-vis::before{
+      content:'AK';position:absolute;bottom:-3rem;right:-1rem;
+      font-size:18rem;font-weight:900;color:rgba(255,255,255,0.025);
+      line-height:1;pointer-events:none;letter-spacing:-8px;
+    }
+    .about-vis .ring{
+      position:absolute;top:-60px;right:-60px;width:320px;height:320px;
+      border-radius:50%;border:1px solid rgba(197,164,109,0.1);
+    }
+    .about-vis .ring2{
+      position:absolute;top:-20px;right:-20px;width:220px;height:220px;
+      border-radius:50%;border:1px solid rgba(197,164,109,0.07);
+    }
+    .about-vis-inner{position:relative;z-index:2}
+    .about-vis h2{font-size:clamp(1.5rem,2.5vw,2.4rem);font-weight:800;color:#fff;line-height:1.1;letter-spacing:-0.02em;max-width:360px;margin-bottom:1rem}
+    .about-vis h2 em{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;color:var(--gold)}
+    .about-vis p{color:rgba(255,255,255,0.55);font-size:0.83rem;line-height:1.8;max-width:360px}
+    .about-txt{background:var(--off);display:flex;flex-direction:column;justify-content:center;padding:5rem 4rem}
+    .about-txt h3{font-size:1.35rem;font-weight:700;color:var(--navy);margin-bottom:1.2rem;line-height:1.25}
+    .about-txt p{font-size:0.86rem;line-height:1.85;color:#555;margin-bottom:1rem}
+    .quote-box{border-left:3px solid var(--gold);padding:1rem 1.3rem;background:#fff;margin-top:1.2rem;box-shadow:0 2px 12px rgba(0,0,0,0.04)}
+    .quote-box p{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.1rem;color:var(--navy);margin:0;line-height:1.6}
 
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-            transition: color 0.3s;
-            font-weight: 500;
-        }
+    /* ── VALUES ── */
+    #valores{background:#fff;padding:6rem 4rem}
+    .sec-header{margin-bottom:3.5rem}
+    .sec-header h2{font-size:clamp(1.8rem,3.5vw,3rem);font-weight:800;color:var(--navy);letter-spacing:-0.02em;line-height:1.05}
+    .sec-header h2 em{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;color:var(--gold)}
+    .values-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5px;background:var(--gray)}
+    .val-card{background:#fff;padding:2.5rem 2rem;border-top:3px solid transparent;transition:background 0.3s,border-color 0.3s;cursor:default}
+    .val-card:hover{background:var(--navy);border-color:var(--gold)}
+    .val-icon{width:42px;height:42px;margin-bottom:1.4rem}
+    .val-icon svg{width:100%;height:100%;stroke:var(--gold);fill:none;stroke-width:1.5}
+    .val-card h4{font-size:0.7rem;font-weight:800;letter-spacing:0.2em;text-transform:uppercase;color:var(--navy);margin-bottom:0.6rem;transition:color 0.3s}
+    .val-card:hover h4{color:var(--gold)}
+    .val-card p{font-size:0.81rem;color:#777;line-height:1.7;transition:color 0.3s}
+    .val-card:hover p{color:rgba(255,255,255,0.65)}
 
-        .nav-links a:hover {
-            color: #ffd700;
-        }
+    /* ── SERVICIOS ── */
+    #servicios{background:var(--off);padding:6rem 4rem}
+    .svc-header{text-align:center;margin-bottom:4rem}
+    .svc-header h2{font-size:clamp(1.8rem,3.5vw,3rem);font-weight:800;color:var(--navy);letter-spacing:-0.02em}
+    .svc-header h2 em{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;color:var(--gold)}
+    .svc-header p{font-size:0.86rem;color:#888;max-width:500px;margin:0.8rem auto 0;line-height:1.7}
+    .svc-header .sec-label{justify-content:center}
+    .svc-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5px;background:var(--gray)}
+    .svc-card{background:#fff;overflow:hidden;transition:background 0.35s;position:relative}
+    .svc-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform 0.35s}
+    .svc-card:hover::after{transform:scaleX(1)}
+    .svc-card:hover{background:var(--navy)}
+    .svc-visual{
+      height:380px;position:relative;overflow:hidden;
+      display:flex;align-items:center;justify-content:center;
+    }
+    .svc-visual.v1{background:linear-gradient(150deg,#050e1f 0%,#0D2B57 100%)}
+    .svc-visual.v2{background:linear-gradient(150deg,#081b38 0%,#0f3468 100%)}
+    .svc-visual.v3{background:linear-gradient(150deg,#050e1f 0%,#0a2245 100%)}
+    .svc-visual.v4{background:linear-gradient(150deg,#0a2245 0%,#081b38 100%)}
+    .svc-visual::before{
+      content:'';position:absolute;inset:0;
+      background-image:linear-gradient(rgba(197,164,109,0.05) 1px,transparent 1px),linear-gradient(90deg,rgba(197,164,109,0.05) 1px,transparent 1px);
+      background-size:32px 32px;
+    }
+    .svc-bg-num{
+      position:absolute;font-family:'Cormorant Garamond',serif;
+      font-size:22rem;font-weight:900;color:rgba(255,255,255,0.04);
+      line-height:1;user-select:none;pointer-events:none;
+    }
+    .svc-icon-wrap{
+      position:absolute;width:100px;height:100px;
+      border:1px solid rgba(197,164,109,0.4);border-radius:50%;
+      display:flex;align-items:center;justify-content:center;
+      background:rgba(197,164,109,0.05);
+    }
+    .svc-icon-wrap svg{width:48px;height:48px;stroke:var(--gold);fill:none;stroke-width:1.3}
+    .svc-body{padding:2rem 2.5rem 2.5rem}
+    .svc-n{font-family:'Cormorant Garamond',serif;font-size:3.5rem;font-weight:900;color:var(--gray);line-height:1;margin-bottom:0.7rem;transition:color 0.35s}
+    .svc-card:hover .svc-n{color:rgba(197,164,109,0.12)}
+    .svc-card h3{font-size:0.88rem;font-weight:800;letter-spacing:0.06em;text-transform:uppercase;color:var(--navy);margin-bottom:0.7rem;transition:color 0.35s}
+    .svc-card:hover h3{color:var(--gold)}
+    .svc-card p{font-size:0.82rem;color:#666;line-height:1.75;transition:color 0.35s}
+    .svc-card:hover p{color:rgba(255,255,255,0.6)}
+    .svc-tag{display:inline-block;margin-top:1.2rem;font-size:0.58rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);border:1px solid rgba(197,164,109,0.3);padding:0.3rem 0.7rem;border-radius:2px}
 
-        /* Hero Section */
-        .hero {
-            margin-top: 70px;
-            height: 90vh;
-            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
-                        url('hero-image.jpg') center/cover no-repeat;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: white;
-            position: relative;
-        }
+    /* ── METHODOLOGY ── */
+    #metodologia{background:var(--navy-dark);padding:6rem 4rem}
+    .met-header{margin-bottom:4rem}
+    .met-header h2{font-size:clamp(1.8rem,3.5vw,3rem);font-weight:800;color:#fff;letter-spacing:-0.02em;max-width:460px}
+    .met-header h2 em{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;color:var(--gold)}
+    .met-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:rgba(255,255,255,0.04)}
+    .met-step{background:var(--navy-dark);padding:2.5rem 2rem;border-top:1px solid rgba(197,164,109,0.18);position:relative}
+    .step-n{font-size:0.58rem;font-weight:800;letter-spacing:0.3em;color:var(--gold);margin-bottom:1.2rem}
+    .met-step h4{font-size:0.88rem;font-weight:700;color:#fff;margin-bottom:0.8rem}
+    .met-step p{font-size:0.79rem;color:rgba(255,255,255,0.45);line-height:1.75}
+    .step-arr{position:absolute;top:2.5rem;right:2rem;font-size:1rem;color:rgba(197,164,109,0.25)}
 
-        .hero-content {
-            max-width: 800px;
-            padding: 2rem;
-            animation: fadeInUp 1s ease-out;
-        }
+    /* ── CTA BAND ── */
+    .cta-band{background:linear-gradient(135deg,var(--navy),var(--navy-dark));padding:5rem 4rem;display:flex;align-items:center;justify-content:space-between;gap:3rem;border-top:1px solid rgba(197,164,109,0.15)}
+    .cta-band h2{font-size:clamp(1.6rem,3vw,2.5rem);font-weight:800;color:#fff;letter-spacing:-0.02em;max-width:480px;line-height:1.1}
+    .cta-band h2 em{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;color:var(--gold)}
 
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-        }
+    /* ── CONTACTO ── */
+    #contacto{background:var(--gold);padding:6rem 4rem;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+    #contacto .c-label{color:var(--navy-dark)}
+    #contacto .c-label::before{background:var(--navy-dark)}
+    #contacto h2{font-size:clamp(1.8rem,3vw,2.8rem);font-weight:800;color:var(--navy-dark);line-height:1.05;letter-spacing:-0.02em}
+    #contacto h2 em{font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300}
+    #contacto>div>p{font-size:0.86rem;color:rgba(8,27,56,0.7);margin-top:1rem;line-height:1.7}
+    .form{display:flex;flex-direction:column;gap:0.9rem}
+    .form input,.form textarea,.form select{background:rgba(8,27,56,0.07);border:1px solid rgba(8,27,56,0.18);padding:0.82rem 1rem;font-size:0.81rem;font-family:'Montserrat',sans-serif;color:var(--navy-dark);border-radius:2px;outline:none;width:100%;transition:border-color 0.2s}
+    .form input::placeholder,.form textarea::placeholder{color:rgba(8,27,56,0.4)}
+    .form input:focus,.form textarea:focus,.form select:focus{border-color:var(--navy)}
+    .form select{appearance:none;cursor:pointer}
+    .form textarea{resize:none;height:96px}
+    .btn-sub{background:var(--navy);color:#fff;padding:1rem;font-size:0.73rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;border:none;border-radius:2px;cursor:pointer;font-family:'Montserrat',sans-serif;transition:background 0.2s}
+    .btn-sub:hover{background:var(--navy-dark)}
 
-        .hero p {
-            font-size: 1.3rem;
-            margin-bottom: 2rem;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
-        }
+    /* ── FOOTER ── */
+    footer{background:var(--navy-dark);padding:2.5rem 4rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1.5rem;border-top:1px solid rgba(197,164,109,0.12)}
+    .footer-tagline{font-size:0.58rem;letter-spacing:0.1em;color:rgba(255,255,255,0.25);margin-top:0.4rem}
+    .footer-links{display:flex;gap:1.5rem}
+    .footer-links a{font-size:0.6rem;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.35);text-decoration:none;transition:color 0.2s}
+    .footer-links a:hover{color:var(--gold)}
+    .footer-copy{font-size:0.58rem;color:rgba(255,255,255,0.18)}
 
-        .cta-button {
-            display: inline-block;
-            padding: 1rem 2.5rem;
-            background: #ffd700;
-            color: #1e3c72;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: bold;
-            font-size: 1.1rem;
-            transition: all 0.3s;
-            box-shadow: 0 4px 15px rgba(255,215,0,0.3);
-        }
+    /* ── ANIMATIONS ── */
+    @keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+    .reveal{opacity:0;transform:translateY(28px);transition:opacity 0.7s ease,transform 0.7s ease}
+    .reveal.visible{opacity:1;transform:translateY(0)}
 
-        .cta-button:hover {
-            background: #ffed4e;
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(255,215,0,0.4);
-        }
-
-        /* Sections */
-        section {
-            padding: 5rem 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            color: #1e3c72;
-            margin-bottom: 1rem;
-            position: relative;
-            padding-bottom: 1rem;
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background: #ffd700;
-        }
-
-        .section-subtitle {
-            text-align: center;
-            font-size: 1.2rem;
-            color: #666;
-            margin-bottom: 3rem;
-        }
-
-        /* About Section */
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            align-items: center;
-        }
-
-        .about-text p {
-            margin-bottom: 1.5rem;
-            font-size: 1.1rem;
-            line-height: 1.8;
-            text-align: justify;
-        }
-
-        .about-image {
-            width: 100%;
-            height: 400px;
-            object-fit: cover;
-            border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-        }
-
-        /* Services Section */
-        #servicios {
-            background: #f8f9fa;
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .service-card {
-            background: white;
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
-            text-align: center;
-        }
-
-        .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-        }
-
-        .service-icon {
-            font-size: 3rem;
-            color: #1e3c72;
-            margin-bottom: 1rem;
-        }
-
-        .service-card h3 {
-            color: #1e3c72;
-            margin-bottom: 1rem;
-            font-size: 1.5rem;
-        }
-
-        .service-card p {
-            color: #666;
-            line-height: 1.6;
-        }
-
-        /* Methodology Section */
-        .methodology-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            align-items: center;
-        }
-
-        .methodology-image {
-            width: 100%;
-            height: 400px;
-            object-fit: cover;
-            border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-        }
-
-        .methodology-features {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-        }
-
-        .feature-item {
-            display: flex;
-            align-items: start;
-            gap: 1rem;
-        }
-
-        .feature-icon {
-            font-size: 2rem;
-            color: #ffd700;
-            min-width: 40px;
-        }
-
-        .feature-text h4 {
-            color: #1e3c72;
-            margin-bottom: 0.5rem;
-        }
-
-        .feature-text p {
-            color: #666;
-            line-height: 1.6;
-        }
-
-        /* Gallery Section */
-        #galeria {
-            background: #f8f9fa;
-        }
-
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
-            margin-top: 3rem;
-        }
-
-        .gallery-item {
-            height: 250px;
-            overflow: hidden;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            position: relative;
-        }
-
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.3s;
-        }
-
-        .gallery-item:hover img {
-            transform: scale(1.1);
-        }
-
-        /* Contact Section */
-        .contact-content {
-            max-width: 600px;
-            margin: 0 auto;
-            background: white;
-            padding: 3rem;
-            border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            color: #1e3c72;
-            font-weight: 600;
-        }
-
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 0.8rem;
-            border: 2px solid #e0e0e0;
-            border-radius: 5px;
-            font-size: 1rem;
-            transition: border-color 0.3s;
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: #1e3c72;
-        }
-
-        .form-group textarea {
-            resize: vertical;
-            min-height: 120px;
-        }
-
-        .submit-button {
-            width: 100%;
-            padding: 1rem;
-            background: #1e3c72;
-            color: white;
-            border: none;
-            border-radius: 50px;
-            font-size: 1.1rem;
-            font-weight: bold;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-
-        .submit-button:hover {
-            background: #2a5298;
-        }
-
-        /* Footer */
-        footer {
-            background: #1e3c72;
-            color: white;
-            text-align: center;
-            padding: 2rem;
-        }
-
-        footer p {
-            margin-bottom: 0.5rem;
-        }
-
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-            margin-top: 1rem;
-        }
-
-        .social-links a {
-            color: white;
-            font-size: 1.5rem;
-            transition: color 0.3s;
-        }
-
-        .social-links a:hover {
-            color: #ffd700;
-        }
-
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .hero p {
-                font-size: 1.1rem;
-            }
-
-            .about-content,
-            .methodology-content {
-                grid-template-columns: 1fr;
-            }
-
-            .nav-links {
-                flex-direction: column;
-                gap: 1rem;
-            }
-
-            nav {
-                flex-direction: column;
-                gap: 1rem;
-            }
-        }
-    </style>
+    /* ── RESPONSIVE ── */
+    @media(max-width:900px){
+      nav{padding:0.8rem 1.5rem}nav ul{display:none}
+      #hero{padding:6rem 1.5rem 4rem}
+      .hero-stats{gap:1.5rem}
+      #acerca{grid-template-columns:1fr}
+      .about-vis{min-height:300px}
+      .about-txt,.about-vis{padding:3rem 1.5rem}
+      #valores,#servicios,#metodologia{padding:4rem 1.5rem}
+      .values-grid{grid-template-columns:1fr 1fr}
+      .svc-grid{grid-template-columns:1fr}
+      .met-steps{grid-template-columns:1fr}
+      .cta-band{flex-direction:column;padding:3.5rem 1.5rem}
+      #contacto{grid-template-columns:1fr;padding:4rem 1.5rem}
+      footer{flex-direction:column;align-items:flex-start;padding:2rem 1.5rem}
+    }
+  </style>
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <nav>
-            <div class="logo">AK EXECUTIVE</div>
-            <ul class="nav-links">
-                <li><a href="#inicio">Inicio</a></li>
-                <li><a href="#nosotros">Nosotros</a></li>
-                <li><a href="#servicios">Servicios</a></li>
-                <li><a href="#metodologia">Metodología</a></li>
-                <li><a href="#contacto">Contacto</a></li>
-            </ul>
-        </nav>
-    </header>
 
-    <!-- Hero Section -->
-    <section id="inicio" class="hero">
-        <div class="hero-content">
-            <h1>Transformamos Líderes, Impulsamos Resultados</h1>
-            <p>Formación ejecutiva y consultoría estratégica para profesionales y organizaciones de alto rendimiento</p>
-            <a href="#contacto" class="cta-button">Comienza tu Transformación</a>
-        </div>
-    </section>
+<!-- NAV -->
+<nav>
+  <a class="logo-wrap" href="#">
+    <svg width="40" height="33" viewBox="0 0 120 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <polygon points="2,98 16,98 38,2 24,2" fill="white"/>
+      <polygon points="20,98 34,98 56,2 42,2" fill="white"/>
+      <polygon points="62,2 75,2 75,98 62,98" fill="white"/>
+      <polygon points="75,48 75,34 120,2 120,16" fill="white"/>
+      <polygon points="75,52 75,66 120,98 120,84" fill="white"/>
+    </svg>
+    <div class="divider"></div>
+    <span class="exec-text">Executive</span>
+  </a>
+  <ul>
+    <li><a href="#acerca">Nosotros</a></li>
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#metodologia">Metodología</a></li>
+    <li><a href="#contacto" class="nav-cta">Contáctanos</a></li>
+  </ul>
+</nav>
 
-    <!-- About Section -->
-    <section id="nosotros">
-        <h2 class="section-title">Quiénes Somos</h2>
-        <p class="section-subtitle">Expertos en desarrollo ejecutivo y liderazgo estratégico</p>
-        <div class="about-content">
-            <div class="about-text">
-                <p><strong>AK EXECUTIVE</strong> es una firma de formación y consultoría especializada en desarrollo ejecutivo, diseño de programas a medida y acompañamiento estratégico para líderes y equipos de alto rendimiento.</p>
-                <p>Ayudamos a profesionales y organizaciones a mejorar sus decisiones, sus resultados y su proyección de largo plazo a través de experiencias de aprendizaje prácticas, aplicadas y orientadas al negocio.</p>
-                <p>Combinamos enfoque académico, experiencia empresarial y metodologías activas para generar cambios medibles en el desempeño individual y en los indicadores del negocio.</p>
-                <p><strong>Nuestra visión:</strong> Consolidarnos como referencia en educación ejecutiva y desarrollo directivo, construyendo hoy los estándares de calidad necesarios para crecer hacia un modelo de instituto/escuela ejecutiva.</p>
-            </div>
-            <img src="about-image.jpg" alt="Equipo AK Executive" class="about-image">
-        </div>
-    </section>
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-diagonal"></div>
 
-    <!-- Services Section -->
-    <section id="servicios">
-        <h2 class="section-title">Nuestros Servicios</h2>
-        <p class="section-subtitle">Soluciones integrales para el desarrollo de tu organización</p>
-        <div class="services-grid">
-            <div class="service-card">
-                <div class="service-icon">📚</div>
-                <h3>Formación Ejecutiva</h3>
-                <p>Programas de desarrollo diseñados para fortalecer competencias directivas y habilidades de liderazgo en profesionales de alto nivel.</p>
-            </div>
-            <div class="service-card">
-                <div class="service-icon">🎯</div>
-                <h3>Workshops In Company</h3>
-                <p>Talleres prácticos y personalizados que se adaptan a las necesidades específicas de tu organización y equipo.</p>
-            </div>
-            <div class="service-card">
-                <div class="service-icon">💼</div>
-                <h3>Asesoría en Liderazgo</h3>
-                <p>Acompañamiento estratégico individual y grupal para mejorar la gestión, toma de decisiones y resultados del negocio.</p>
-            </div>
-            <div class="service-card">
-                <div class="service-icon">🗺️</div>
-                <h3>Rutas de Capacitación</h3>
-                <p>Diseño de planes de formación alineados a los objetivos estratégicos y necesidades de desarrollo de tu organización.</p>
-            </div>
-        </div>
-    </section>
+  <!-- Logo grande -->
+  <div class="hero-brand">
+    <svg width="86" height="72" viewBox="0 0 120 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <polygon points="2,98 16,98 38,2 24,2" fill="white"/>
+      <polygon points="20,98 34,98 56,2 42,2" fill="white"/>
+      <polygon points="62,2 75,2 75,98 62,98" fill="white"/>
+      <polygon points="75,48 75,34 120,2 120,16" fill="white"/>
+      <polygon points="75,52 75,66 120,98 120,84" fill="white"/>
+    </svg>
+    <div class="h-divider"></div>
+    <span class="h-exec">Executive</span>
+  </div>
 
-    <!-- Methodology Section -->
-    <section id="metodologia">
-        <h2 class="section-title">Nuestra Metodología</h2>
-        <p class="section-subtitle">Enfoque práctico orientado a resultados medibles</p>
-        <div class="methodology-content">
-            <img src="methodology-image.jpg" alt="Metodología AK Executive" class="methodology-image">
-            <div class="methodology-features">
-                <div class="feature-item">
-                    <div class="feature-icon">✓</div>
-                    <div class="feature-text">
-                        <h4>Enfoque Académico Riguroso</h4>
-                        <p>Fundamentación teórica sólida respaldada por las mejores prácticas internacionales en desarrollo ejecutivo.</p>
-                    </div>
-                </div>
-                <div class="feature-item">
-                    <div class="feature-icon">✓</div>
-                    <div class="feature-text">
-                        <h4>Experiencia Empresarial Real</h4>
-                        <p>Consultores con trayectoria comprobada en la gestión y transformación de organizaciones.</p>
-                    </div>
-                </div>
-                <div class="feature-item">
-                    <div class="feature-icon">✓</div>
-                    <div class="feature-text">
-                        <h4>Metodologías Activas</h4>
-                        <p>Aprendizaje experiencial, casos prácticos y simulaciones que garantizan la aplicación inmediata.</p>
-                    </div>
-                </div>
-                <div class="feature-item">
-                    <div class="feature-icon">✓</div>
-                    <div class="feature-text">
-                        <h4>Resultados Medibles</h4>
-                        <p>Seguimiento y evaluación del impacto en el desempeño individual y los indicadores del negocio.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+  <div class="hero-tag">Formación &amp; Consultoría Ejecutiva</div>
 
-    <!-- Gallery Section -->
-    <section id="galeria">
-        <h2 class="section-title">Nuestro Trabajo</h2>
-        <p class="section-subtitle">Experiencias de formación que transforman organizaciones</p>
-        <div class="gallery-grid">
-            <div class="gallery-item">
-                <img src="gallery-1.jpg" alt="Sesión de formación ejecutiva">
-            </div>
-            <div class="gallery-item">
-                <img src="gallery-2.jpg" alt="Workshop corporativo">
-            </div>
-            <div class="gallery-item">
-                <img src="gallery-3.jpg" alt="Asesoría estratégica">
-            </div>
-            <div class="gallery-item">
-                <img src="gallery-4.jpg" alt="Equipo de alto rendimiento">
-            </div>
-        </div>
-    </section>
+  <h1>Desarrolla líderes.<br/><span class="gold">Impulsa</span> resultados.</h1>
 
-    <!-- Contact Section -->
-    <section id="contacto">
-        <h2 class="section-title">Contacto</h2>
-        <p class="section-subtitle">Comienza tu proceso de transformación hoy</p>
-        <div class="contact-content">
-            <form>
-                <div class="form-group">
-                    <label for="nombre">Nombre Completo *</label>
-                    <input type="text" id="nombre" name="nombre" required>
-                </div>
-                <div class="form-group">
-                    <label for="empresa">Empresa / Organización</label>
-                    <input type="text" id="empresa" name="empresa">
-                </div>
-                <div class="form-group">
-                    <label for="email">Email *</label>
-                    <input type="email" id="email" name="email" required>
-                </div>
-                <div class="form-group">
-                    <label for="telefono">Teléfono</label>
-                    <input type="tel" id="telefono" name="telefono">
-                </div>
-                <div class="form-group">
-                    <label for="mensaje">Mensaje *</label>
-                    <textarea id="mensaje" name="mensaje" required placeholder="Cuéntanos sobre tus necesidades de formación o consultoría..."></textarea>
-                </div>
-                <button type="submit" class="submit-button">Enviar Consulta</button>
-            </form>
-        </div>
-    </section>
+  <p class="hero-sub">Programas de alto impacto para profesionales y organizaciones que buscan transformar su desempeño y consolidar su proyección estratégica de largo plazo.</p>
 
-    <!-- Footer -->
-    <footer>
-        <p><strong>AK EXECUTIVE</strong></p>
-        <p>Formación y Consultoría Ejecutiva</p>
-        <p>Transformando líderes, impulsando resultados</p>
-        <div class="social-links">
-            <a href="#" title="LinkedIn">🔗</a>
-            <a href="#" title="Email">✉️</a>
-            <a href="#" title="WhatsApp">📱</a>
-        </div>
-        <p style="margin-top: 1rem; font-size: 0.9rem;">&copy; 2026 AK EXECUTIVE. Todos los derechos reservados.</p>
-    </footer>
+  <div class="hero-pills">
+    <div class="hero-pill">Profesional</div>
+    <div class="hero-pill">Confiable</div>
+    <div class="hero-pill">Escalable</div>
+    <div class="hero-pill">Preparada para crecer</div>
+  </div>
+
+  <div class="hero-actions">
+    <a href="#servicios" class="btn-primary">Ver servicios</a>
+    <a href="#contacto" class="btn-outline">Solicitar propuesta</a>
+  </div>
+
+  <div class="hero-stats">
+    <div class="h-stat"><div class="num">4<span>+</span></div><div class="lbl">Líneas de servicio</div></div>
+    <div class="h-stat"><div class="num">100<span>%</span></div><div class="lbl">Programas a medida</div></div>
+    <div class="h-stat"><div class="num">B2B</div><div class="lbl">Foco corporativo</div></div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-strip">
+  <div class="marquee-inner">
+    <span class="m-item">Formación Ejecutiva</span><span class="m-dot"> ◆ </span>
+    <span class="m-item">Liderazgo &amp; Gestión</span><span class="m-dot"> ◆ </span>
+    <span class="m-item">Workshops In-Company</span><span class="m-dot"> ◆ </span>
+    <span class="m-item">Alto Rendimiento</span><span class="m-dot"> ◆ </span>
+    <span class="m-item">Consultoría Estratégica</span><span class="m-dot"> ◆ </span>
+    <span class="m-item">Diseño de Programas</span><span class="m-dot"> ◆ </span>
+    <span class="m-item">Rutas de Capacitación</span><span class="m-dot"> ◆ </span>
+    <span class="m-item">Formación Ejecutiva</span><span class="m-dot"> ◆ </span>
+    <span class="m-item">Liderazgo &amp; Gestión</span><span class="m-dot"> ◆ </span>
+    <span class="m-item">Workshops In-Company</span><span class="m-dot"> ◆ </span>
+    <span class="m-item">Alto Rendimiento</span><span class="m-dot"> ◆ </span>
+    <span class="m-item">Consultoría Estratégica</span><span class="m-dot"> ◆ </span>
+    <span class="m-item">Diseño de Programas</span><span class="m-dot"> ◆ </span>
+    <span class="m-item">Rutas de Capacitación</span><span class="m-dot"> ◆ </span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="acerca">
+  <div class="about-vis reveal">
+    <div class="ring"></div><div class="ring2"></div>
+    <div class="about-vis-inner">
+      <div class="sec-label">Quiénes somos</div>
+      <h2>Una firma construida para el <em>liderazgo real</em></h2>
+      <p>AK Executive nace con visión de convertirse en referencia en educación ejecutiva y desarrollo directivo, construyendo hoy los estándares de calidad que el futuro exige.</p>
+    </div>
+  </div>
+  <div class="about-txt reveal">
+    <div class="sec-label dark-line">Nuestra propuesta</div>
+    <h3>Formación que genera cambios medibles</h3>
+    <p>Somos una firma especializada en desarrollo ejecutivo, diseño de programas a medida y acompañamiento estratégico para líderes y equipos de alto rendimiento.</p>
+    <p>Combinamos enfoque académico, experiencia empresarial y metodologías activas para generar cambios reales en el desempeño individual y en los indicadores del negocio.</p>
+    <div class="quote-box">
+      <p>"Ayudamos a profesionales y organizaciones a mejorar sus decisiones, sus resultados y su proyección de largo plazo."</p>
+    </div>
+  </div>
+</section>
+
+<!-- VALUES -->
+<section id="valores">
+  <div class="sec-header reveal">
+    <div class="sec-label">Nuestros pilares</div>
+    <h2>Lo que nos <em>define</em></h2>
+  </div>
+  <div class="values-grid">
+    <div class="val-card reveal">
+      <div class="val-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg></div>
+      <h4>Profesional</h4><p>Excelencia en cada detalle de nuestros programas y en cada interacción con nuestros clientes.</p>
+    </div>
+    <div class="val-card reveal">
+      <div class="val-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+      <h4>Confiable</h4><p>Compromiso y transparencia como base de todas nuestras relaciones y compromisos profesionales.</p>
+    </div>
+    <div class="val-card reveal">
+      <div class="val-icon"><svg viewBox="0 0 24 24"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg></div>
+      <h4>Escalable</h4><p>Visión de crecimiento sostenible que nos permite adaptarnos y crecer junto a nuestros clientes.</p>
+    </div>
+    <div class="val-card reveal">
+      <div class="val-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="1"/><path d="M3 9h18M9 21V9"/></svg></div>
+      <h4>Preparada para crecer</h4><p>Construyendo hoy los estándares necesarios para consolidarnos como referencia en educación ejecutiva.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICIOS -->
+<section id="servicios">
+  <div class="svc-header reveal">
+    <div class="sec-label" style="justify-content:center">Lo que ofrecemos</div>
+    <h2>Nuestros <em>servicios</em></h2>
+    <p>Cada programa está diseñado a medida, orientado al negocio y alineado a los objetivos estratégicos de tu organización.</p>
+  </div>
+  <div class="svc-grid">
+    <div class="svc-card reveal">
+      <div class="svc-visual v1">
+        <span class="svc-bg-num">01</span>
+        <div class="svc-icon-wrap"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+      </div>
+      <div class="svc-body">
+        <div class="svc-n">01</div>
+        <h3>Programas de Formación Ejecutiva</h3>
+        <p>Experiencias de aprendizaje prácticas, aplicadas y orientadas al negocio para líderes que buscan elevar su desempeño directivo y estratégico de manera sostenida.</p>
+        <div class="svc-tag">Formación · Liderazgo</div>
+      </div>
+    </div>
+    <div class="svc-card reveal">
+      <div class="svc-visual v2">
+        <span class="svc-bg-num">02</span>
+        <div class="svc-icon-wrap"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg></div>
+      </div>
+      <div class="svc-body">
+        <div class="svc-n">02</div>
+        <h3>Workshops In-Company</h3>
+        <p>Sesiones intensivas diseñadas para equipos corporativos, con metodologías activas que generan cambios inmediatos en la dinámica, cultura y resultados del equipo.</p>
+        <div class="svc-tag">Equipos · Cultura</div>
+      </div>
+    </div>
+    <div class="svc-card reveal">
+      <div class="svc-visual v3">
+        <span class="svc-bg-num">03</span>
+        <div class="svc-icon-wrap"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>
+      </div>
+      <div class="svc-body">
+        <div class="svc-n">03</div>
+        <h3>Asesoría en Liderazgo y Gestión</h3>
+        <p>Acompañamiento estratégico personalizado para líderes y ejecutivos que necesitan fortalecer sus capacidades de decisión, influencia y gestión de equipos de alto rendimiento.</p>
+        <div class="svc-tag">Consultoría · Estrategia</div>
+      </div>
+    </div>
+    <div class="svc-card reveal">
+      <div class="svc-visual v4">
+        <span class="svc-bg-num">04</span>
+        <div class="svc-icon-wrap"><svg viewBox="0 0 24 24"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg></div>
+      </div>
+      <div class="svc-body">
+        <div class="svc-n">04</div>
+        <h3>Diseño de Rutas de Capacitación</h3>
+        <p>Arquitectura de aprendizaje organizacional alineada a los objetivos estratégicos: diagnóstico, diseño instruccional, implementación y medición del impacto en el negocio.</p>
+        <div class="svc-tag">Diseño · Medición</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- METHODOLOGY -->
+<section id="metodologia">
+  <div class="met-header reveal">
+    <div class="sec-label">Cómo trabajamos</div>
+    <h2>Nuestra <em>metodología</em> de impacto</h2>
+  </div>
+  <div class="met-steps">
+    <div class="met-step reveal">
+      <div class="step-n">PASO 01</div><div class="step-arr">→</div>
+      <h4>Diagnóstico estratégico</h4>
+      <p>Comprendemos los objetivos, desafíos y contexto de tu organización para diseñar una propuesta completamente alineada a tu realidad.</p>
+    </div>
+    <div class="met-step reveal">
+      <div class="step-n">PASO 02</div><div class="step-arr">→</div>
+      <h4>Diseño a medida</h4>
+      <p>Creamos programas y rutas de aprendizaje con metodologías activas, enfoque práctico y contenidos aplicables desde el primer día.</p>
+    </div>
+    <div class="met-step reveal">
+      <div class="step-n">PASO 03</div>
+      <h4>Implementación y medición</h4>
+      <p>Ejecutamos con excelencia y medimos el impacto real en los indicadores del negocio y en el desempeño individual de los participantes.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-band reveal">
+  <h2>¿Listo para llevar tu organización al <em>siguiente nivel</em>?</h2>
+  <a href="#contacto" class="btn-primary" style="white-space:nowrap;flex-shrink:0">Solicitar propuesta →</a>
+</div>
+
+<!-- CONTACTO -->
+<section id="contacto">
+  <div class="reveal">
+    <div class="sec-label c-label" style="color:var(--navy-dark)">Trabajemos juntos</div>
+    <h2>¿Hablamos sobre tu <em>equipo</em>?</h2>
+    <p>Cuéntanos sobre tus objetivos y diseñaremos una propuesta completamente personalizada para tu organización.</p>
+  </div>
+  <div class="form reveal">
+    <input type="text" placeholder="Nombre completo"/>
+    <input type="text" placeholder="Empresa / Organización"/>
+    <input type="email" placeholder="Correo electrónico"/>
+    <select><option value="" disabled selected>Servicio de interés</option>
+      <option>Programas de Formación Ejecutiva</option>
+      <option>Workshops In-Company</option>
+      <option>Asesoría en Liderazgo y Gestión</option>
+      <option>Diseño de Rutas de Capacitación</option>
+      <option>Otro / Consultar</option>
+    </select>
+    <textarea placeholder="Cuéntanos brevemente qué necesitas..."></textarea>
+    <button class="btn-sub" onclick="alert('¡Gracias! Nos pondremos en contacto contigo muy pronto.')">Enviar solicitud →</button>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <a class="logo-wrap" href="#">
+      <svg width="36" height="30" viewBox="0 0 120 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <polygon points="2,98 16,98 38,2 24,2" fill="white"/>
+        <polygon points="20,98 34,98 56,2 42,2" fill="white"/>
+        <polygon points="62,2 75,2 75,98 62,98" fill="white"/>
+        <polygon points="75,48 75,34 120,2 120,16" fill="white"/>
+        <polygon points="75,52 75,66 120,98 120,84" fill="white"/>
+      </svg>
+      <div class="divider"></div>
+      <span class="exec-text">Executive</span>
+    </a>
+    <div class="footer-tagline">Profesional · Confiable · Escalable · Preparada para crecer</div>
+  </div>
+  <div class="footer-links">
+    <a href="#acerca">Nosotros</a>
+    <a href="#servicios">Servicios</a>
+    <a href="#metodologia">Metodología</a>
+    <a href="#contacto">Contacto</a>
+  </div>
+  <div class="footer-copy">© 2025 AK Executive. Todos los derechos reservados.</div>
+</footer>
+
+<script>
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach((e,i) => {
+      if(e.isIntersecting) setTimeout(()=>e.target.classList.add('visible'), i*70);
+    });
+  }, {threshold:0.08});
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+  window.addEventListener('scroll', () => {
+    document.querySelector('nav').style.padding = window.scrollY > 60 ? '0.6rem 4rem' : '1rem 4rem';
+  });
+</script>
 </body>
 </html>
